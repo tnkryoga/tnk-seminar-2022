@@ -3,7 +3,7 @@
  
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="/jimakuChan/img/favicon2/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" />
     <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
     <script src="js/bouyomichan_client.js"></script>
 
@@ -266,20 +266,19 @@
         }*/
 
         //遅延用関数
-        function delay(time) {
+        /*function delay(time) {
         return new Promise(resolve => setTimeout(resolve, time));
         }
         async function wait() {
             console.log('start timer');
             await delay(2000);
             console.log('after 1 second');
-        }
+        }*/
 
         // 認識結果が返ってきたとき ------------------
         var recog_pretext = [""];
         recognition.onresult = function(event) {
             var results = event.results;
-            var nlp_text = ''
             var Flag = false;
             for (var i = event.resultIndex; i < results.length; i++) {
                 if (results[i].isFinal)
@@ -347,7 +346,6 @@
                         recog_pretext.push(results[i][0].transcript);
                     }
                     
-                    wait()
                     document.getElementById('speech_text-imb').innerHTML = nlp_text;
                     document.getElementById('speech_text-bg').innerHTML = nlp_text;
                     document.getElementById('speech_text-fg').innerHTML = nlp_text;
