@@ -237,9 +237,10 @@
         }
 
         var end_chunk = '';
+        var recog_pretext = [""];
+        var count_first = 0;
 
         // 認識結果が返ってきたとき ------------------
-        var recog_pretext = [""];
         recognition.onresult = function(event) {
             var results = event.results;
             var Flag = false;
@@ -277,6 +278,7 @@
                         else{
                             console.log('ok!');
                             Flag = true;
+                            count_first = count_first + 1;
                         }
                         return response.json()
                     }).then((json)  => {
@@ -300,7 +302,7 @@
                     //前回の結果を保持し表示
                     var pretext = '';
                     if(count != 0){
-                        if(count == 1){
+                        if(count_first == 1){
                             recog_pretext.shift()
                         }
                         if(recog_pretext.length >= 6){
