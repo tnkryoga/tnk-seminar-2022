@@ -265,21 +265,12 @@
             trans2_destlang = arg_trans2;
         }*/
 
-        //遅延用関数
-        /*function delay(time) {
-        return new Promise(resolve => setTimeout(resolve, time));
-        }
-        async function wait() {
-            console.log('start timer');
-            await delay(2000);
-            console.log('after 1 second');
-        }*/
-
         // 認識結果が返ってきたとき ------------------
         var recog_pretext = [""];
         recognition.onresult = function(event) {
             var results = event.results;
             var Flag = false;
+            var nlp_text = ''
             for (var i = event.resultIndex; i < results.length; i++) {
                 if (results[i].isFinal)
                 {
@@ -299,7 +290,7 @@
                     }
                     console.log(JSON.stringify(data))
 
-                    const res = fetch('https://murata-lab-seminar-2022-backend-q2ffmeurna-an.a.run.app/predict',{
+                    fetch('https://murata-lab-seminar-2022-backend-q2ffmeurna-an.a.run.app/predict',{
                         method: 'POST',
                         body: JSON.stringify(data),
                         //mode: "no-cors",
@@ -316,7 +307,7 @@
                         }
                         return response.json()
                     }).then((json)  => {
-                        var nlp_text = json.text;
+                        nlp_text = json.text;
                         console.log(nlp_text);
                     }).catch((error) => {
                         console.log(error);
@@ -346,9 +337,34 @@
                         recog_pretext.push(results[i][0].transcript);
                     }
                     
-                    document.getElementById('speech_text-imb').innerHTML = nlp_text;
+                    /*document.getElementById('speech_text-imb').innerHTML = nlp_text;
                     document.getElementById('speech_text-bg').innerHTML = nlp_text;
-                    document.getElementById('speech_text-fg').innerHTML = nlp_text;
+                    document.getElementById('speech_text-fg').innerHTML = nlp_text;*/
+                    
+                    const promise = new Promise(function(resolve, reject){
+                    setTimeout(function(){
+                        console.log(Flag)
+                        document.getElementById('speech_text-imb').innerHTML = nlp_text;
+                        document.getElementById('speech_text-bg').innerHTML = nlp_text;
+                        document.getElementById('speech_text-fg').innerHTML = nlp_text;
+                        resolve();
+                    }, 2000);
+                    });
+
+                    // promise.then(function(){
+                    //     //if(Flag){
+                    //     // 認識結果を表示する ---------------------
+                    //     console.log(Flag)
+                    //     document.getElementById('speech_text-imb').innerHTML = nlp_text;
+                    //     document.getElementById('speech_text-bg').innerHTML = nlp_text;
+                    //     document.getElementById('speech_text-fg').innerHTML = nlp_text;
+                    //     // }else{
+                    //     //     console.log(Flag)
+                    //     //     document.getElementById('speech_text-imb').innerHTML = recog_text;
+                    //     //     document.getElementById('speech_text-bg').innerHTML = recog_text;
+                    //     //     document.getElementById('speech_text-fg').innerHTML = recog_text;
+                    //     // }
+                    // });
 
                     /*if(Flag){
                         // 認識結果を表示する ---------------------
