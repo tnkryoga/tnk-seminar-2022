@@ -300,7 +300,10 @@
                     //前回の結果を保持し表示
                     var pretext = '';
                     if(count != 0){
-                        if(recog_pretext.length > 7){
+                        if(count == 1){
+                            recog_pretext.shift()
+                        }
+                        if(recog_pretext.length >= 6){
                             recog_pretext.shift()
                         }
 
@@ -308,7 +311,7 @@
                             pretext = pretext +'<br>' + recog_pretext[l]
                         }
                         //テキストの表示と次回表示するテキストの取得
-                        document.getElementById('speech_pretext').innerHTML = '-----------------------' + pretext;
+                        document.getElementById('speech_pretext').innerHTML = '---------------------------------' + pretext;
                         
                     }
                     
