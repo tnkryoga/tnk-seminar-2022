@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="https://sayonari.github.io/favicon.ico" />
+    <link rel="icon" href="https://tnkryoga.github.io/tnk-seminar-2022/favicon.ico" />
     <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
     <script src="js/bouyomichan_client.js"></script>
 
@@ -18,7 +18,7 @@
     gtag('config', 'G-5RNP0LDER8');
     </script>
 
-    <title>jimakuChan [CONFIG]</title>
+    <title>murata-seminar-2022</title>
 
     <style type="text/css">
 
@@ -99,9 +99,9 @@
 <iframe src="" name="sample" width="100%" height="30%" id="asr_frame"></iframe>
 
 <!-- # API key text box ##################### -->
-Google Script API-KEY: <input type="text" name="gas_key" id="gas_key" size="60" oninput="updateOptionValues();" /><BR>
+<!-- Google Script API-KEY: <input type="text" name="gas_key" id="gas_key" size="60" oninput="updateOptionValues();" /><BR>
 ↑ここにKEYを入れたら翻訳結果も出る．キーの作成方法はこちら：<a target="_blank" href="http://www.sayonari.com/trans_asr/index_asr.html">http://www.sayonari.com/trans_asr/index_asr.html</a><BR>
-<BR>
+<BR> -->
 
 <!-- # 背景の色 ############################## -->
 　　　　文字色 フチ色<BR>
@@ -111,10 +111,10 @@ Google Script API-KEY: <input type="text" name="gas_key" id="gas_key" size="60" 
 　　背景色：<input id="bgcolor" type="color" value="#00ff00" oninput="document.getElementById('asr_frame').contentWindow.document.bgColor=this.value; changeTextColor('imb',this.value,1); updateOptionValues(only_url=true)" />
 
 <BR>
-翻訳１：<input id="color2" type="color" value="#ffffff" oninput="changeTextColor('fg',this.value,2); updateOptionValues(only_url=true)" />
+<!-- 翻訳１：<input id="color2" type="color" value="#ffffff" oninput="changeTextColor('fg',this.value,2); updateOptionValues(only_url=true)" />
 <input id="st_color2" type="color" value="#000000" oninput="changeTextColor('bg',this.value,2); updateOptionValues(only_url=true)" /><BR>
 翻訳２：<input id="color3" type="color" value="#ffffff" oninput="changeTextColor('fg',this.value,3); updateOptionValues(only_url=true)" />
-<input id="st_color3" type="color" value="#000000" oninput="changeTextColor('bg',this.value,3); updateOptionValues(only_url=true)" /><BR>
+<input id="st_color3" type="color" value="#000000" oninput="changeTextColor('bg',this.value,3); updateOptionValues(only_url=true)" /><BR> -->
 <BR>
 
 <!-- # テキストフォント ########################
@@ -132,7 +132,7 @@ Google Script API-KEY: <input type="text" name="gas_key" id="gas_key" size="60" 
 
 <input id="st_width1" type="range" value="6" min="0" max="20" step="0.1" oninput="setTextBorder(this.value,1); document.getElementById('text_st_size_view1').innerHTML=this.value; updateOptionValues(only_url=true)" />
 <span id="text_st_size_view1">6</span>pt
-<BR>
+<!-- <BR>
 
 翻訳１：
 <input id="size2" type="range" value="25" min="0" max="40" step="0.1" oninput="document.getElementById('asr_frame').contentWindow.document.getElementById('trans_text').style.fontSize = this.value + 'pt'; document.getElementById('text_size_view2').innerHTML=this.value; updateOptionValues(only_url=true)" />
@@ -154,7 +154,7 @@ Google Script API-KEY: <input type="text" name="gas_key" id="gas_key" size="60" 
 
 <input id="st_width3" type="range" value="6" min="0" max="20" step="0.1" oninput="setTextBorder(this.value,3); document.getElementById('text_st_size_view3').innerHTML=this.value; updateOptionValues(only_url=true)" />
 <span id="text_st_size_view3">6</span>pt
-<BR>
+<BR> -->
 
 <BR>
 <!-- # テキストの揃え ######################### -->
@@ -205,7 +205,7 @@ Google Script API-KEY: <input type="text" name="gas_key" id="gas_key" size="60" 
 フォント名：<input type="text" name="speech_text_font" id="speech_text_font" size="30" oninput="updateOptionValues();" /><BR>
 
 
-翻訳言語（１）：
+<!-- 翻訳言語（１）：
 <select id="trans" onchange="updateOptionValues(only_url=false);">
     <option value="none">なし</option>
     <option value="ja">日本語</option>
@@ -252,7 +252,7 @@ Google Script API-KEY: <input type="text" name="gas_key" id="gas_key" size="60" 
     <option value="so">ソマリ語</option>
 </select>　　
 
-フォント名：<input type="text" name="trans_text2_font" id="trans_text2_font" size="30" oninput="updateOptionValues();" /><BR>
+フォント名：<input type="text" name="trans_text2_font" id="trans_text2_font" size="30" oninput="updateOptionValues();" /><BR> -->
 
 ↑言語設定は，即反映されないので，設定後リロードしてみてね．（なんで変わらんのかなー(´・ω・｀)）<BR>
 <BR>
@@ -269,8 +269,8 @@ Google Script API-KEY: <input type="text" name="gas_key" id="gas_key" size="60" 
 
 
 <!-- # 棒読みちゃん連携 ######################### -->
-棒読みちゃん連携を使う：<input type="checkbox" id="bouyomi" onchange="updateOptionValues()"> ← 使う場合チェック入れる．詳細 → <a target="_blank" href="https://twitter.com/sayonari/status/1386937837682003968">twitter</a><BR>
-<BR>
+<!-- 棒読みちゃん連携を使う：<input type="checkbox" id="bouyomi" onchange="updateOptionValues()"> ← 使う場合チェック入れる．詳細 → <a target="_blank" href="https://twitter.com/sayonari/status/1386937837682003968">twitter</a><BR>
+<BR> -->
 
 <!-- # センシティブワード対応する！ ######################### -->
 センシティブワード対応（***に置き換え）を<font color="red">やめる</font>：<input type="checkbox" id="anti_sexual" onchange="updateOptionValues()"> <BR>
@@ -282,8 +282,8 @@ URL : <textarea name="url" id="url" rows="7" cols="90"></textarea><BR>
 <BR>
 　　　<input type="button" value="copy to clipboard" id="textarea_copy" onclick="document.getElementsByTagName('textarea')[0].select();document.execCommand('copy');">
 　<a id="open_link" target="_blank" href="">[別窓で開く]</a><BR>
-<BR><BR><BR><BR>
-テスト中<BR>
+<BR><BR>
+<BR>
 </body>
 
 
@@ -408,7 +408,7 @@ URL : <textarea name="url" id="url" rows="7" cols="90"></textarea><BR>
 
 
 </html>
-Footer
+<!-- Footer
 © 2023 GitHub, Inc.
 Footer navigation
 Terms
@@ -422,4 +422,4 @@ API
 Training
 Blog
 About
-jimakuChan/index.html at main · sayonari/jimakuChan
+jimakuChan/index.html at main · sayonari/jimakuChan -->

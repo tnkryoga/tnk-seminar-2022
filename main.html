@@ -3,7 +3,7 @@
  
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="https://tnkryoga.github.io/tnk-seminar-2022/favicon.ico" />
     <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
     <script src="js/bouyomichan_client.js"></script>
 
@@ -118,12 +118,6 @@
             document.getElementById('speech_text-bg').innerHTML = '';
             document.getElementById('speech_text-fg').innerHTML = '';
             document.getElementById('speech_pretext').innerHTML = pretext;
-            /*document.getElementById('trans_text-imb').innerHTML = '';
-            document.getElementById('trans_text-bg').innerHTML = '';
-            document.getElementById('trans_text-fg').innerHTML = '';
-            document.getElementById('trans_text2-imb').innerHTML = '';
-            document.getElementById('trans_text2-bg').innerHTML = '';
-            document.getElementById('trans_text2-fg').innerHTML = '';*/
         };
 
 
@@ -133,23 +127,6 @@
         //////////////////////////////////////////////////////////
         // URLからの値読み込み -------------------
         arg_recog = getParam('recog');
-        /*arg_trans = getParam('trans');
-        arg_trans2 = getParam('trans2');*/
-
-        /////////////////////////////////////////////////////////
-        // 翻訳API用設定 ---------------------------
-        /*if (arg_trans != null) var request = new XMLHttpRequest();
-        if (arg_trans2 != null) var request2 = new XMLHttpRequest();
-
-        // 翻訳用設定 ---------------------------
-        var trans_sourcelang = 'ja';
-        var trans_destlang = 'en';
-        var trans2_destlang = '';
-
-        var gas_key = getParam('gas_key');
-        
-        var TRANS_URL = 'https://script.google.com/macros/s/' + gas_key + '/exec';
-        var query = ''*/
 
         // その他の設定 -----------------------
         var bouyomi = getParam('bouyomi');
@@ -258,12 +235,6 @@
             recognition.lang = arg_recog;
             trans_sourcelang　= recognition.lang;
         }
-        /*if (arg_trans != null) {
-            trans_destlang = arg_trans;
-        }
-        if (arg_trans2 != null) {
-            trans2_destlang = arg_trans2;
-        }*/
 
         // 認識結果が返ってきたとき ------------------
         var recog_pretext = [""];
@@ -323,7 +294,7 @@
                     }
                     
                     //前回の結果を保持し表示
-                    var pretext = null;
+                    var pretext = '';
                     if(count != 0){
                         if(recog_pretext.length > 7){
                             recog_pretext.shift()
@@ -337,10 +308,6 @@
                         recog_pretext.push(results[i][0].transcript);
                     }
                     
-                    /*document.getElementById('speech_text-imb').innerHTML = nlp_text;
-                    document.getElementById('speech_text-bg').innerHTML = nlp_text;
-                    document.getElementById('speech_text-fg').innerHTML = nlp_text;*/
-                    
                     const promise = new Promise(function(resolve, reject){
                     setTimeout(function(){
                         console.log(Flag)
@@ -350,95 +317,6 @@
                         resolve();
                     }, 3000);
                     });
-
-                    // promise.then(function(){
-                    //     //if(Flag){
-                    //     // 認識結果を表示する ---------------------
-                    //     console.log(Flag)
-                    //     document.getElementById('speech_text-imb').innerHTML = nlp_text;
-                    //     document.getElementById('speech_text-bg').innerHTML = nlp_text;
-                    //     document.getElementById('speech_text-fg').innerHTML = nlp_text;
-                    //     // }else{
-                    //     //     console.log(Flag)
-                    //     //     document.getElementById('speech_text-imb').innerHTML = recog_text;
-                    //     //     document.getElementById('speech_text-bg').innerHTML = recog_text;
-                    //     //     document.getElementById('speech_text-fg').innerHTML = recog_text;
-                    //     // }
-                    // });
-
-                    /*if(Flag){
-                        // 認識結果を表示する ---------------------
-                        console.log(Flag)
-                        document.getElementById('speech_text-imb').innerHTML = nlp_text;
-                        document.getElementById('speech_text-bg').innerHTML = nlp_text;
-                        document.getElementById('speech_text-fg').innerHTML = nlp_text;
-                    }else{
-                        console.log(Flag)
-                        document.getElementById('speech_text-imb').innerHTML = recog_text;
-                        document.getElementById('speech_text-bg').innerHTML = recog_text;
-                        document.getElementById('speech_text-fg').innerHTML = recog_text;
-                    }*/
-
-                    // 棒読みちゃんにコメントを送信する
-                    /*if(bouyomi == "true") {
-                        let bouyomiChanClient = new BouyomiChanClient();
-                        bouyomiChanClient.talk(recog_text);
-                    }
-
-                    if(gas_key != null){
-                        // 翻訳1言語目
-                        // console.log('arg_trans:'+arg_trans)
-                        if(arg_trans != null){
-                            query = TRANS_URL + '?text=' + recog_text + '&source=' + trans_sourcelang + '&target=' + trans_destlang;
-                            request.open('GET', query, true);
-
-                            request.onreadystatechange = function(){
-                                if (request.readyState === 4 && request.status === 200){
-                                    document.getElementById('speech_text-imb').innerHTML = recog_text;
-                                    document.getElementById('speech_text-bg').innerHTML = recog_text;
-                                    document.getElementById('speech_text-fg').innerHTML = recog_text;
-                                    // document.getElementById('trans_text-imb').innerHTML = '[' + trans_destlang + '] ' + request.responseText;
-                                    // document.getElementById('trans_text-bg').innerHTML = '[' + trans_destlang + '] ' + request.responseText;
-                                    // document.getElementById('trans_text-fg').innerHTML = '[' + trans_destlang + '] ' + request.responseText;
-                                    document.getElementById('trans_text-imb').innerHTML =  request.responseText;
-                                    document.getElementById('trans_text-bg').innerHTML =  request.responseText;
-                                    document.getElementById('trans_text-fg').innerHTML =  request.responseText;
-                                }
-                            }
-                            request.send(null);
-                        }
-
-                        // 翻訳2言語目
-                        // console.log('arg_trans2:'+arg_trans2)
-                        if(arg_trans2 != null){
-                            query2 = TRANS_URL + '?text=' + recog_text + '&source=' + trans_sourcelang + '&target=' + trans2_destlang;
-                            request2.open('GET', query2, true);
-
-                            request2.onreadystatechange = function(){
-                                if (request2.readyState === 4 && request2.status === 200){
-                                    document.getElementById('speech_text-imb').innerHTML = recog_text;
-                                    document.getElementById('speech_text-bg').innerHTML = recog_text;
-                                    document.getElementById('speech_text-fg').innerHTML = recog_text;
-                                    document.getElementById('trans_text2-imb').innerHTML = request2.responseText;
-                                    document.getElementById('trans_text2-bg').innerHTML = request2.responseText;
-                                    document.getElementById('trans_text2-fg').innerHTML = request2.responseText;
-                                }
-                            }
-                            request2.send(null);
-                        }
-
-                        // タイムアウトでの文字消去設定（翻訳結果受信を受けてリセット）
-                        if (timer != null) {
-                            clearTimeout(id);
-                            id = setTimeout(fn_del,timer);   
-                        }
-
-                    } else {
-                        document.getElementById('speech_text-imb').innerHTML = recog_text;
-                        document.getElementById('speech_text-bg').innerHTML = recog_text;
-                        document.getElementById('speech_text-fg').innerHTML = recog_text;
-                    }*/
-
                 }
                 else
                 {
@@ -500,30 +378,6 @@
                         [前回の認識結果を表示]
                     </div>
                 </div>
-
-                <!--<div id="trans_text">
-                    <div class="stroke-single-bg" id="trans_text-bg">
-                        [ここに結果表示（翻訳１）]
-                    </div>  
-                    <div class="stroke-single-fg" id="trans_text-fg">
-                        [ここに結果表示（翻訳１）]
-                    </div>  
-                    <div class="stroke-single-imb" id="trans_text-imb">
-                        [ここに結果表示（翻訳１）]
-                    </div>  
-                </div>
-
-                <div id="trans_text2">
-                    <div class="stroke-single-bg" id="trans_text2-bg">
-                        [ここに結果表示（翻訳２）]
-                    </div>  
-                    <div class="stroke-single-fg" id="trans_text2-fg">
-                        [ここに結果表示（翻訳２）]
-                    </div>  
-                    <div class="stroke-single-imb" id="trans_text2-imb">
-                        [ここに結果表示（翻訳２）]
-                    </div>  
-                </div>-->
             </td></tr>
         </table>
     </div>
@@ -541,18 +395,6 @@
 
 <!-- ############## 末尾のjavascript ############## -->
 <script type="text/javascript">
-
-// 初期表示文の変更 /////
-/*if (getParam('trans') == null) {
-    document.getElementById('trans_text-bg').innerHTML = '';
-    document.getElementById('trans_text-fg').innerHTML = '';
-    document.getElementById('trans_text-imb').innerHTML = '';
-}
-if (getParam('trans2') == null) {
-    document.getElementById('trans_text2-bg').innerHTML = '';
-    document.getElementById('trans_text2-fg').innerHTML = '';
-    document.getElementById('trans_text2-imb').innerHTML = '';
-} */
 
 
 // 表示スタイル変更 ---------------------------------
