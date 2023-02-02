@@ -295,7 +295,7 @@
                     }
                     
                     //前回の結果を保持し表示
-                    var pretext = '';
+                    var pretext = '[前回の認識結果を表示]';
                     if(count != 0){
                         if(recog_pretext.length > 7){
                             recog_pretext.shift()
@@ -306,7 +306,7 @@
                         }
                         //テキストの表示と次回表示するテキストの取得
                         document.getElementById('speech_pretext').innerHTML = '-----------------------<br>' + pretext;
-                        recog_pretext.push(nlp_text);
+                        
                     }
                     
                     const promise = new Promise(function(resolve, reject){
@@ -318,8 +318,11 @@
                         document.getElementById('speech_text-imb').innerHTML = nlp_text;
                         document.getElementById('speech_text-bg').innerHTML = nlp_text;
                         document.getElementById('speech_text-fg').innerHTML = nlp_text;
+
+                        //前回の認識結果の保持
+                        recog_pretext.push(nlp_text);
                         resolve();
-                    }, 2500);
+                    }, 2000);
                     });
                 }
                 else
