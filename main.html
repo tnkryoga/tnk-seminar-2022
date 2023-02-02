@@ -279,6 +279,7 @@
                         return response.json()
                     }).then((json)  => {
                         nlp_text = json.text;
+                        console.log(json)
                         console.log(nlp_text);
                     }).catch((error) => {
                         console.log(error);
@@ -305,17 +306,20 @@
                         }
                         //テキストの表示と次回表示するテキストの取得
                         document.getElementById('speech_pretext').innerHTML = '-----------------------<br>' + pretext;
-                        recog_pretext.push(results[i][0].transcript);
+                        recog_pretext.push(nlp_text);
                     }
                     
                     const promise = new Promise(function(resolve, reject){
                     setTimeout(function(){
                         console.log(Flag)
+                        if(nlp_text.includes('\n')){
+                            nlp_text = nlp_text.replace('\n','<br>');
+                        }
                         document.getElementById('speech_text-imb').innerHTML = nlp_text;
                         document.getElementById('speech_text-bg').innerHTML = nlp_text;
                         document.getElementById('speech_text-fg').innerHTML = nlp_text;
                         resolve();
-                    }, 3000);
+                    }, 2500);
                     });
                 }
                 else
